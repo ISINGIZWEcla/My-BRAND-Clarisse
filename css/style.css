@@ -24,6 +24,7 @@ h2{
 nav{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding-top: 10px;
   padding-left: 10%;
@@ -46,6 +47,8 @@ nav ul li a{
 	
 }
 
+
+
 nav ul li a:hover{
 	color: white;
   font-weight: bold;
@@ -53,6 +56,23 @@ nav ul li a:hover{
 	transition: .3s;
 
 }
+
+/* #### hamberger #### */
+.hamburger{
+  background-color: transparent;
+  color:white;
+  font-size: 40px;
+  border: 0;
+  cursor: pointer;
+  display: none;
+  
+  
+}
+
+.hamburger :focus{
+  outline: none;
+}
+
 
 /* #### home section #### */
 .home{
@@ -695,7 +715,7 @@ font-weight: normal;
   
 }
 
-.sender-info{
+.sender-info input{
   height: 40px;
   width: 200px;
 }
@@ -724,14 +744,30 @@ font-weight: normal;
 
 /* ####  responsiveness #### */
 @media only screen and (max-width: 600px) {
+
   nav{
-    display: block;
-    
+    display: flex;
+    position: sticky;
   }
+
+  .hamburger{
+    display: block;
+  }
+  
+  #nav-ul {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    text-align: right;
+  }
+
+  #nav-ul.showNav{
+   display: flex;
+  }
+
   #landing{
     display: flex;
     flex-direction: column-reverse;
-    
      
   }
 
@@ -774,6 +810,11 @@ font-weight: normal;
     
   }
 
+  .sender-info{
+    display: flex;
+    flex-direction: column;
+  }
+
   .grouped-footer{
     display: flex;
     flex-direction: column;
@@ -809,6 +850,8 @@ font-weight: normal;
   }
   
 }
+
+
   
   
 
