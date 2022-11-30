@@ -715,6 +715,8 @@ font-weight: normal;
   
 }
 
+
+
 .sender-info input{
   height: 40px;
   width: 200px;
@@ -852,6 +854,11 @@ font-weight: normal;
 }
 
 
+
+
+
+
+
   
   
 
@@ -861,7 +868,14 @@ font-weight: normal;
 
 
 
-
+.error{
+  display: none;
+}
+.error.active{
+  display: block;
+  color: red;
+  text-align: center;
+}
 
 
 

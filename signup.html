@@ -37,15 +37,16 @@
 
     <div class="login-form">
         <h1>Sign up</h1>
-        <form action="">
-            <label for="">Name</label>
-            <input type="text" placeholder="Name">
-
+        <form  id="sign_form" novalidate action="login.html">
+            <label for="">Names</label>
+            <input type="text" id="name_field" placeholder="Name">
+            <span id="name_error"  class="error"></span>
             <label for="">Email</label>
-            <input type="email" placeholder="Email">
-
+            <input type="email" id="email_field" placeholder="Email">
+            <span id="email_error" class="error"></span>
             <label for="">Password</label>
-            <input type="password" placeholder="Password">
+            <input type="password" id="password_field" placeholder="Password">
+            <span id="password_error"  class="error"></span>
             <button type="submit" class="submit-button">Sign up</button>
         </form>
         <p class="">Have an account already?<a href="login.html">Login</a></p>
@@ -101,7 +102,9 @@
       </div>
 
     </section>
-
+    <script src="javascript/myjs.js"></script>
+  <script src="javascript/form/signup_form.js" type="module" ></script>
   </body>
-  <script src="javascript/myjs.js"></script>
+  
+  
 </html>

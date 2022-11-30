@@ -216,15 +216,20 @@
           </div>
           <div class="message-container">
             <div class="sender-info">
-              <input type="text" placeholder="Names">
-              <input type="text" placeholder="email">
+              <form id="contact-form" novalidate action="">
+              <input type="text" id="names_field" placeholder="Names">
+              <span id="names_error" class="error"></span>
+              <input type="text" id="email_field" placeholder="email">
+              <span id="email_error" class="error"></span>
             </div>
             <div class="message-cont">
-              <input type="text" placeholder="Write Your Message">
+              <input type="text" id="comment_field" placeholder="Write Your Message">
+              <span id="comment_error" class="error"></span>
             </div>
             <div class="send-btn">
               <button >Send Message</button>
             </div>
+          </form>
           </div>
         
       </div>
@@ -264,8 +269,11 @@
         </div>
         <div class="subscription">
           <h2>Join our Newsletter</h2><br/>
-          <input type="email" name="" id="" placeholder="Your Email Address">
+          <form id="newletter_form" novalidate action="">
+          <input type="email" name="" id="email_field" placeholder="Your Email Address">
+          <span id="email_error" class="error"></span>
           <button class="sub-butn">Subscribe</button>
+        </form>
         </div>
       </div>
       <div class="social">
@@ -284,6 +292,8 @@
 
     </section>
     <script src="javascript/myjs.js"></script>
+    <script src="javascript/form/contact_form.js" type="module" ></script>
+    
   </body>
 
 </html>

@@ -114,11 +114,14 @@
          </div>
         </div>
         <div class="new-comment">
-          <form class="comment-form">
+          <form class="comment-form" novalidate id="comment-form">
             <h1>new comment</h1>
-            <input type="text" placeholder="Names">
-            <input type="email" placeholder="Email">
-            <input type="text" placeholder="comment">
+            <input type="text" id="names_field" placeholder="Names">
+            <span id="names_error" class="error"></span>
+            <input type="email" id="email_field" placeholder="Email">
+            <span id="email_error" class="error"></span>
+            <input type="text" id="comment_field" placeholder="comment">
+            <span id="comment_error" class="error"></span>
             <button>Add Comment</button>
           </form>
 
@@ -177,5 +180,6 @@
       </section>
     </div>
     <script src="javascript/myjs.js"></script>
+    <script src="javascript/form/newcomment_form.js" type="module" ></script>
   </body>
 </html>

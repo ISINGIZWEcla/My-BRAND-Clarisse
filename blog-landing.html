@@ -82,8 +82,11 @@
       <div class="newsletter">
         <h2>Newsletter</h2><br/>
         <h3>Stay updated with our latest blogs</h3><br/>
-        <input type="text" placeholder="Enter Email Address" >
+        <form id="newletter_form" novalidate action="">
+          <input type="email" name="" id="email_field" placeholder="Your Email Address">
+          <span id="email_error" class="error"></span>
         <button  class="sub-btn"><i class="fas fa-arrow-right"></i></button>
+      </form>
       </div>
       </section>
       <section class="footer">
@@ -139,5 +142,6 @@
       </section>
     </div>
     <script src="javascript/myjs.js"></script>
+    <script src="javascript/form/newletter_form.js" type="module"></script>
   </body>
 </html>

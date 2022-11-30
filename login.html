@@ -38,12 +38,13 @@
     <div class="login-form">
         <h1>Login</h1>
         <p style="margin-bottom: 20px">Enter your email and password below</p>
-        <form action="dashboard .html"> 
+        <form id="login_form" novalidate action="dashboard .html"> 
             <label for="">Email</label>
-            <input type="email" placeholder="Email">
-
+            <input id="email_field" type="email" placeholder="Email">
+            <span id="email_error" class="error"></span>
             <label for="">Password</label>
-            <input type="password" placeholder="Password">
+            <input id="password_field" type="password" placeholder="Password">
+            <span id="password_error"  class="error"></span>
             <button type="submit" class="submit-button">Login</button>
         </form>
         <p class="">Don't have an account?<a href="signup.html">signup</a></p>
@@ -101,6 +102,7 @@
 
     </section>
     <script src="javascript/myjs.js"></script>
+    <script src="javascript/form/login_form.js" type="module" ></script>
   </body>
 
 </html>
