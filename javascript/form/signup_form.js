@@ -44,7 +44,15 @@ document.addEventListener('DOMContentLoaded', ()=> {
               {
                   name:'required',
                   value: true,
-              }
+              },
+              {
+              name:'minlength',
+              value:3,
+            },
+              {
+              name:'maxlength',
+              value:15,
+            }
               
           ]
       },

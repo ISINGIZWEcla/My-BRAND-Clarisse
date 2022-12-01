@@ -47,7 +47,7 @@
             <label for="">Password</label>
             <input type="password" id="password_field" placeholder="Password">
             <span id="password_error"  class="error"></span>
-            <button type="submit" class="submit-button">Sign up</button>
+            <button type="submit"  class="submit-button">Sign up</button>
         </form>
         <p class="">Have an account already?<a href="login.html">Login</a></p>
     </div>
@@ -104,6 +104,25 @@
     </section>
     <script src="javascript/myjs.js"></script>
   <script src="javascript/form/signup_form.js" type="module" ></script>
+  <script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+    
+    const email = document.querySelector('#email_field').value
+    const password = document.querySelector('#password_field').value
+    const names=document.querySelector('#name_field').value
+
+    // new user object to be saved to local storage
+    
+
+   // set user to localstorage  
+    localStorage.setItem('name', names);
+    localStorage.setItem('password', password);
+    localStorage.setItem('email', email);
+    alert("account created")
+
+    
+  })
+  </script>
   </body>
   
   

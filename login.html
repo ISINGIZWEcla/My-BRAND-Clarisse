@@ -14,7 +14,7 @@
     
   </Head>
 
-  <body>
+  <body onload="">
     
     <!-- navbar section -->
     <nav>
@@ -38,7 +38,7 @@
     <div class="login-form">
         <h1>Login</h1>
         <p style="margin-bottom: 20px">Enter your email and password below</p>
-        <form id="login_form" novalidate action="dashboard .html"> 
+        <form id="login_form" novalidate action="single-blog.html"> 
             <label for="">Email</label>
             <input id="email_field" type="email" placeholder="Email">
             <span id="email_error" class="error"></span>
@@ -103,6 +103,27 @@
     </section>
     <script src="javascript/myjs.js"></script>
     <script src="javascript/form/login_form.js" type="module" ></script>
+    <script>
+      document.querySelector('form').addEventListener('submit', (e) => {
+      
+        const storedpwd = localStorage.getItem('password');
+        const storedemail = localStorage.getItem('email');
+
+    
+    var userpass = document.getElementById('password_field');
+    var usermail = document.getElementById("email_field");
+
+    if(userpass.value == storedpwd && usermail.value == storedemail){
+        alert('You are logged in.');
+    }else{
+        alert('Error on login');
+        e.preventDefault()
+    }
+  
+      
+    })
+    </script>
+    
   </body>
 
 </html>
