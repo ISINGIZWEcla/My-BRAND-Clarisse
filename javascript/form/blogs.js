@@ -16,9 +16,9 @@ for(let i=0;i<blog_list.length;i++){
             <div class="author">
               Admin
             </div>
-            <div class="comments"> ${blog_list[i].comments.length}  <i class="fa fa-comment" aria-hidden="true"></i></div>
+            <div class="comments">${blog_list[i].comments?.length || 0}<i class="fa fa-comment" aria-hidden="true"></i></div>
             <div class="likes">
-            ${blog_list[i].likes} <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+            ${blog_list[i]?.likes || 0} <i class="fa fa-thumbs-up" aria-hidden="true"></i>
             </div>
           </div>
         </div>

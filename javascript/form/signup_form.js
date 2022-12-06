@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
                 {
                     name: 'pattern',
                     value: patters.password,
-                    message:"Password should contains at least \n" +
-                        "1 lowercase letter, \n 1 uppercase letter\n 1 special character\n" +
+                    message:"Password should contains at least \n " +
+                        "1 lowercase letter, \n 1 uppercase letter \n 1 special character \n " +
                         " and 8 characters "
                 }
             ]
