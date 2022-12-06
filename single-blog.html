@@ -30,88 +30,55 @@
         </ul>    
       </nav>
       <section class="blog-container  b-cont">
+        <div id="singleBlog_cont">
          <div class="image-dates">
-          <img src="image/life-goes-on-nawpic-6.jpg" alt="">
+          <img  id="singleBlog_img" src="" alt="">
           <div class="publishing-details">
-            <div class="published-date">
-              10 May 2022
+            <div class="published-date" id="published-date">
+             
             </div>
             <div class="author">
-              Admin
+              
             </div>
             
           
         </div>
          </div>
          <div class="blog-paragraphs">
-          <h1>Lorem ipsum dolor</h1>
-          <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris varius ut quam vel faucibus. 
-            Sed posuere scelerisque dapibus. Cras malesuada risus in nisi tristique pharetra. Sed sagittis velit vitae mi volutpat posuere.
-             Nam nec sollicitudin lacus. Nulla ac euismod nisi. Donec eget volutpat nunc. Integer erat diam, ornare nec est vitae, 
-             ullamcorper maximus urna. Aliquam vel bibendum sapien.
-            Maecenas cursus euismod diam, sit amet rhoncus metus convallis vel. Phasellus et est arcu.
-           </p></br>
-            <p>Praesent ullamcorper tellus id mi commodo sodales. Ut aliquam vestibulum sollicitudin. 
-              Praesent tincidunt urna ut turpis aliquet fermentum. Integer aliquet non lectus quis tincidunt.
-              Nulla sit amet sapien congue, finibus libero ac, pharetra sem. Integer elit mi, vehicula id interdum a,
-              efficitur eget libero. Donec venenatis lobortis nulla eu interdum. Sed ac felis molestie, consectetur libero non,
-              laoreet est. Ut vel purus ornare risus maximus commodo non vitae lorem. Cras eget erat et elit interdum condimentum a at purus.
-              Aenean pharetra libero at felis vehicula, et maximus neque tincidunt. Nulla nec fringilla eros, ac pharetra eros.
-              Praesent dapibus ornare orci eget lobortis.
-           </p><br/>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris varius ut quam vel faucibus. 
-              Sed posuere scelerisque dapibus. Cras malesuada risus in nisi tristique pharetra. 
-              Sed sagittis velit vitae mi volutpat posuere. Nam nec sollicitudin lacus. Nulla ac
-               euismod nisi. Donec eget volutpat nunc. Integer erat diam, ornare nec est vitae, 
-               ullamcorper maximus urna. Aliquam vel bibendum sapien.
-              Maecenas cursus euismod diam, sit amet rhoncus metus convallis vel. Phasellus et est arcu. 
-              Praesent ullamcorper tellus id mi commodo sodales. Ut aliquam vestibulum sollicitudin. Praesent tincidunt urna 
-              ut turpis aliquet fermentum. Integer aliquet non lectus quis tincidunt.
+          <h1 id="singleBlog_title"></h1>
+          <p id="singleBlog_content">
+         
             </p>
 
          </div>
+        </div>
          <div class="comment-likes">
           <div class="comment-number">
-            Comments  (125)
+            Comments  
           </div>
-          <div class="likes number">
-            50 <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+          <div class="likesNumber">
+           <span id="liking"></span>
+            <button  id="likes-nbr"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+            
           </div>
 
          </div>
-        <div class="comment-list">
-         <div class="commenter-info">
+        <div id="commment_list" class="comment-list">
+        
+         <div id="comment_container">
+          <div class="commenter-info">
           <i class="fas fa-user-circle"></i>
-            <label for="names">Dr. Mbonimana Gamariel</label>
+            <label id="userName" for="names">Dr. Mbonimana Gamariel</label>
          </div>
          <div class="comment">
-          <p>Mbikuyekumutima mbasabye imbabazi Nyakubahwa Perezida n'Abanya #rwanda mwese. Nakoze icyaha cyo gutwara imodoka nanyweye inzoga.
+          <p id="commentTxt">Mbikuyekumutima mbasabye imbabazi Nyakubahwa Perezida n'Abanya #rwanda mwese. Nakoze icyaha cyo gutwara imodoka nanyweye inzoga.
              Nafashe umwanzuro wo kutazongera kunywa inzoga. Mwumve gutakamba kwanjye.Niteguye kuzuza neza izindi nshingano zose mungiriye icyizere,
             </p>
 
          </div>
-         <div class="commenter-info">
-          <i class="fas fa-user-circle"></i>
-            <label for="names">Dr. Mbonimana Gamariel</label>
-         </div>
-         <div class="comment">
-          <p>Mbikuyekumutima mbasabye imbabazi Nyakubahwa Perezida n'Abanya #rwanda mwese. Nakoze icyaha cyo gutwara imodoka nanyweye inzoga.
-             Nafashe umwanzuro wo kutazongera kunywa inzoga. Mwumve gutakamba kwanjye.Niteguye kuzuza neza izindi nshingano zose mungiriye icyizere,
-            </p>
-
-         </div>
-         <div class="commenter-info">
-          <i class="fas fa-user-circle"></i>
-            <label for="names">Dr. Mbonimana Gamariel</label>
-         </div>
-         <div class="comment">
-          <p>Mbikuyekumutima mbasabye imbabazi Nyakubahwa Perezida n'Abanya #rwanda mwese. Nakoze icyaha cyo gutwara imodoka nanyweye inzoga.
-             Nafashe umwanzuro wo kutazongera kunywa inzoga. Mwumve gutakamba kwanjye.Niteguye kuzuza neza izindi nshingano zose mungiriye icyizere,
-            </p>
-
-         </div>
+         
+        
+        </div>
         </div>
         <div class="new-comment">
           <form class="comment-form" novalidate id="comment-form">
@@ -122,7 +89,7 @@
             <span id="email_error" class="error"></span>
             <input type="text" id="comment_field" placeholder="comment">
             <span id="comment_error" class="error"></span>
-            <button>Add Comment</button>
+            <button id="add_comment">Add Comment</button>
           </form>
 
         </div>
@@ -181,5 +148,7 @@
     </div>
     <script src="javascript/myjs.js"></script>
     <script src="javascript/form/newcomment_form.js" type="module" ></script>
+    <script src="javascript/form/single-blog.js" ></script>
+    
   </body>
 </html>

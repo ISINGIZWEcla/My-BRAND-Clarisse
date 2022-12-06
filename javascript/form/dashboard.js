@@ -1,57 +1,62 @@
 import {checkValidation, setAttributes, validate, patters} from "./validation.js";
 document.addEventListener('DOMContentLoaded', ()=> {
-    const form = document.getElementById("sign_form");
+    const form = document.getElementById("new-blogedit");
 
     let fields = [
         {
-            name:'email',
-            field: 'email_field',
-            error: 'email_error',
+            name:'Title',
+            field: 'title',
+            error: 'title_error',
             conditions:[
                 {
                     name:'required',
                     value: true,
                 },
                 {
-                    name: 'pattern',
-                    value: patters.email
-                }
+                  name:'minlength',
+                  value:5,
+              },
+              {
+                  name: "maxlength",
+                  value: 20
+              }
             ]
         },
         {
-            name:'password',
-            field:"password_field",
-            error:"password_error",
-            conditions:[
-                {
-                    name:'required',
-                    value: true,
-                },
-                {
-                    name: 'pattern',
-                    value: patters.password,
-                    message:"Password should contains at least \n" +
-                        "1 lowercase letter, \n 1 uppercase letter\n 1 special character\n" +
-                        " and 8 characters "
-                }
-            ]
-        },
-        {
-          name:'Names',
-          field:"name_field",
-          error:"name_error",
+          name:'Description',
+          field: 'description',
+          error: 'description_error',
           conditions:[
               {
                   name:'required',
                   value: true,
               },
               {
-              name:'minlength',
-              value:3,
+                name:'minlength',
+                value:25,
             },
+            {
+                name: "maxlength",
+                value: 70
+            }
+            ]
+        },
+        {
+          name:'Details',
+          field:"editing",
+          error:"editing_error",
+          conditions:[
               {
-              name:'maxlength',
-              value:25,
+                  name:'required',
+                  value: true,
+              },
+              {
+                name:'minlength',
+                value:60,
+            },
+            {
+                name: "maxlength",
+                value: 1000
             }
               
           ]
@@ -84,3 +89,5 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
 })
+
+

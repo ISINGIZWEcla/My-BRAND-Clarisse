@@ -335,7 +335,9 @@ nav ul li a:hover{
   flex-direction: column;
 
 }
-
+#comment_container{
+  display: none;
+}
 .blog-container h1{
   text-align: center;
   font-size: 25px;
@@ -343,8 +345,9 @@ nav ul li a:hover{
 }
 
 .articles-container{
-  display: flex;
-  justify-content: space-between
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2rem;
 }
 
 .one-blog{
@@ -458,6 +461,18 @@ max-width: 500px;
   margin-left: 300px;
   
   
+ }
+
+ #likes-nbr{
+  background-color: transparent;
+  width: 30px;
+  border: none;
+  cursor: pointer;
+ }
+
+ #likes-nbr i{
+  color: #ffffff;
+  font-size: 30px;
  }
 
  .comment-form{

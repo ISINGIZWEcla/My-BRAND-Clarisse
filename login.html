@@ -38,7 +38,7 @@
     <div class="login-form">
         <h1>Login</h1>
         <p style="margin-bottom: 20px">Enter your email and password below</p>
-        <form id="login_form" novalidate action="single-blog.html"> 
+        <form id="login_form" novalidate action=""> 
             <label for="">Email</label>
             <input id="email_field" type="email" placeholder="Email">
             <span id="email_error" class="error"></span>
@@ -105,23 +105,49 @@
     <script src="javascript/form/login_form.js" type="module" ></script>
     <script>
       document.querySelector('form').addEventListener('submit', (e) => {
-      
-        const storedpwd = localStorage.getItem('password');
-        const storedemail = localStorage.getItem('email');
+              e.preventDefault();
+              var email= document.getElementById("email_field").value; 
+              var password = document.getElementById("password_field").value;
 
-    
-    var userpass = document.getElementById('password_field');
-    var usermail = document.getElementById("email_field");
+              var userFromLocalStorage = JSON.parse(localStorage.getItem("users"));
 
-    if(userpass.value == storedpwd && usermail.value == storedemail){
-        alert('You are logged in.');
-    }else{
-        alert('Error on login');
-        e.preventDefault()
-    }
-  
-      
-    })
+              console.log(userFromLocalStorage)
+              // if(!userFromLocalStorage){
+              //     console.log('user doesnt exist');
+              // }
+
+
+              // if (userFromLocalStorage.password !== password){
+              //     alert('wrong password');
+              //     preventDefault()
+              // }
+
+              newuser={
+                email,
+                password
+              }
+          
+              let found = false;
+              for(let i=0; i<userFromLocalStorage.length; i++){
+                let user = userFromLocalStorage[i];
+                console.log("-----------",user)
+                console.log(user.role)
+                if(user.email === newuser.email && user.password === newuser.password && user.role === "admin" ){
+                found = true
+                   window.location = "dashboard .html"
+                }
+                else if(user.email === newuser.email && user.password === newuser.password && user.role === "user" ){
+                  user.isLogin = true
+                  localStorage.setItem('users' , JSON.stringify(userFromLocalStorage))
+                  found = true
+                   window.location = "blog-landing.html"
+                }
+                 
+              }
+              if(!found)
+                alert("Incorrect credentials")   
+                      
+            })
     </script>
     
   </body>

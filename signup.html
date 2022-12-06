@@ -115,12 +115,30 @@
     
 
    // set user to localstorage  
-    localStorage.setItem('name', names);
-    localStorage.setItem('password', password);
-    localStorage.setItem('email', email);
-    alert("account created")
+   const newUser = {
+      email, 
+      password,
+      names,
+      role:'user'
+    }
 
-    
+   // set user to localstorage 
+   var users ;
+    if(!localStorage.users){
+      users=[{
+        email:'klaraisingizwe@gmail.com', 
+        password:'Isingizwe22@',
+        names:'Clarisse',
+        role:'admin'
+      }]
+    }
+    else{
+      users=JSON.parse(localStorage.users)
+    }
+    console.log("new user:------- ", newUser)
+    users.push(newUser)
+    localStorage.users=JSON.stringify(users)
+    alert("account created")
   })
   </script>
   </body>
