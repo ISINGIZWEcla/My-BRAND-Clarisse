@@ -4,6 +4,7 @@ const post_blog=document.getElementById('post_blog')
 post_blog.addEventListener('click',(event)=>{
 event.preventDefault()
 saveBlog()
+
 })
  function saveBlog(){
 let title=document.getElementById('title')
@@ -11,12 +12,12 @@ let description=document.getElementById('description')
 let content=document.getElementById('editor')
 let cover=document.getElementById('myFile')
 
-var blogs ;
-if(!localStorage.blogs){
+let blogs ;
+if(!localStorage.getItem('blogs')){
   blogs=[]
 }
 else{
-  blogs=JSON.parse(localStorage.blogs)
+  blogs=JSON.parse(localStorage.getItem('blogs'))
 }
  
 var today = new Date();
@@ -51,9 +52,9 @@ single_blog.datecreated=today
 single_blog.Cover=finalImage;
 
 blogs.push(single_blog)
-localStorage.blogs=JSON.stringify(blogs)
+localStorage.setItem('blogs',JSON.stringify(blogs))
 })
-
+location="../dashboard .html"
 
 }
 

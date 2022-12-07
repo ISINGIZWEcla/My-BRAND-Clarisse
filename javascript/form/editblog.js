@@ -1,6 +1,6 @@
 const otherBlogTitle=localStorage.getItem("otherBlogTitle")
-const single_blog=JSON.parse(localStorage.blogs)
-const blogInfo=single_blog.find((event)=>{
+const allBlogs=JSON.parse(localStorage.blogs)
+const blogInfo=allBlogs.find((event)=>{
    return event.Title == otherBlogTitle
 })
 
@@ -24,11 +24,11 @@ editBlog.addEventListener("click", (event)=>{
 })
 
 function editBlogContents(){
-  blogInfo.Title = otherTitle.value || blogInfo.Title
-  blogInfo.Description = otherDescription.value || blogInfo.Description
-  blogInfo.Content = otherEditor.value || blogInfo.Content 
+  blogInfo.Title = otherTitle.value 
+  blogInfo.Description = otherDescription.value 
+  blogInfo.Content = otherEditor.value 
 
-  localStorage.blogs = JSON.stringify(blogInfo);
+  localStorage.setItem('blogs', JSON.stringify(allBlogs));
 }
 
 

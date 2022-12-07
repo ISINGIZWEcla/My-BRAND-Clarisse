@@ -26,11 +26,12 @@ singleContent.innerHTML=blogInfo.Content
 if(blogInfo.comments){
    blogInfo.comments.forEach(each => displayComment(each))
 }
-
+const myForm=document.getElementById('comment-form')
 const post_comment=document.getElementById('add_comment')
 post_comment.addEventListener('click',(event)=>{
 event.preventDefault()
 savecomment()
+myForm.reset();
 })
 
 function savecomment(){
@@ -38,6 +39,7 @@ function savecomment(){
    const cname=document.getElementById('names_field')
    const cemail=document.getElementById('email_field')
    const comment_txt=document.getElementById('comment_field')
+   const myForm=document.getElementById('comment-form')
 
 
 var single_comment={}
@@ -63,6 +65,7 @@ function displayComment (each ){
    newComment.querySelector('#commentTxt').innerText = each.CommentTxt || null
 
    commment_list.appendChild(newComment)
+   
 
 }
 
