@@ -1,43 +1,108 @@
 const blog_cont=document.getElementById('articles-container')
 
-const blog_list=JSON.parse(localStorage.blogs)
-console.log(blog_list)
-for(let i=0;i<blog_list.length;i++){
+getBlogs();
+
+// function single_blog(id){
+//   location="single-blog.html"
   
+  
+
+//}
+
+async  function  getBlogs(){
+  try {
+    const  response  = await axios.get('https://mybrand-backend.onrender.com/api/get-blogs')
+    const data = response.data.data.blogs
+console.log("response:",data)
+data.forEach(eachBlog=>{
   blog_cont.innerHTML+=`
   <div class="one-blog">
-          <img src="${blog_list[i].Cover}" alt="">
+          <img src="${eachBlog.image}" alt="">
           <div class="publishing-details">
             <div class="published-date">
-              ${blog_list[i].datecreated
+              ${eachBlog.created_on
               }
             </div>
             <div class="coment-likes">
             <div class="author">
               Admin
             </div>
-            <div class="comments">${blog_list[i].comments?.length || 0}<i class="fa fa-comment" aria-hidden="true"></i></div>
+            <div class="comments">${eachBlog.comments?.length || 0}<i class="fa fa-comment" aria-hidden="true"></i></div>
             <div class="likes">
-            ${blog_list[i]?.likes || 0} <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+            ${eachBlog?.likes || 0} <i class="fa fa-thumbs-up" aria-hidden="true"></i>
             </div>
           </div>
         </div>
         <div class="headings">
-          <a href="#" onclick="singleBlog_view('${blog_list[i].Title}')" >${blog_list[i].Title}</a>
+          <a href="#" onclick="singleBlog_view('${eachBlog._id}')" >${eachBlog.title}</a>
         </div>
         <div class="blog-description">
-                ${blog_list[i].Description
+                ${eachBlog.description
                 }                                             
         </div>
         </div>
-  
+
   `
+  
+})  
+}catch(err) {
+    console.error(err)
+
+}
 }
 
-function singleBlog_view(title){
-  localStorage.setItem("BlogTitle",title)
+
+
+// async function fetchBlogs() {
+//   try {
+//     const response = await fetch('http://localhost:5000/api/get-blogs', {
+//       headers:{
+//         'Content-Type':'application/json',
+//         'Authorization': 'Bearer '+localStorage.getItem('accesstoken')
+//       }
+//     })
+//     console.log(response)
+//   }catch(err){}
+// }
+
+// const eachBlog=JSON.parse(localStorage.blogs)
+// console.log(eachBlog)
+// for(let i=0;i<eachBlog.length;i++){
+  
+//   blog_cont.innerHTML+=`
+//   <div class="one-blog">
+//           <img src="${eachBlog.Cover}" alt="">
+//           <div class="publishing-details">
+//             <div class="published-date">
+//               ${eachBlog.datecreated
+//               }
+//             </div>
+//             <div class="coment-likes">
+//             <div class="author">
+//               Admin
+//             </div>
+//             <div class="comments">${eachBlog.comments?.length || 0}<i class="fa fa-comment" aria-hidden="true"></i></div>
+//             <div class="likes">
+//             ${eachBlog?.likes || 0} <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+//             </div>
+//           </div>
+//         </div>
+//         <div class="headings">
+//           <a href="#" onclick="singleBlog_view('${eachBlog.Title}')" >${eachBlog.Title}</a>
+//         </div>
+//         <div class="blog-description">
+//                 ${eachBlog.Description
+//                 }                                             
+//         </div>
+//         </div>
+  
+//   `
+// }
+
+function singleBlog_view(id){
+  //localStorage.setItem("BlogTitle",title)
   history.go(0)
-  location="single-blog.html"
+  location=`single-blog.html?id=${id}`
 }
 
 

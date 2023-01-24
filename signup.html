@@ -102,11 +102,12 @@
       </div>
 
     </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="javascript/myjs.js"></script>
   <script src="javascript/form/signup_form.js" type="module" ></script>
   <script>
-    document.querySelector('form').addEventListener('submit', (e) => {
-    
+    document.querySelector('form').addEventListener('submit',async (e) => {
+      event.preventDefault()
     const email = document.querySelector('#email_field').value
     const password = document.querySelector('#password_field').value
     const names=document.querySelector('#name_field').value
@@ -119,27 +120,30 @@
       email, 
       password,
       names,
-      role:'user'
     }
+    let res = await axios.post('https://mybrand-backend.onrender.com/api/add-users', newUser);
 
-   // set user to localstorage 
-   var users ;
-    if(!localStorage.users){
-      users=[{
-        email:'klaraisingizwe@gmail.com', 
-        password:'Isingizwe22@',
-        names:'Clarisse',
-        role:'admin'
-      }]
-    }
-    else{
-      users=JSON.parse(localStorage.users)
-    }
-    console.log("new user:------- ", newUser)
-    users.push(newUser)
-    localStorage.users=JSON.stringify(users)
-    alert("account created")
-  })
+    let data = res.data;
+    console.log(data);
+
+  //  // set user to localstorage 
+  //  var users ;
+  //   if(!localStorage.users){
+  //     users=[{
+  //       email:'klaraisingizwe@gmail.com', 
+  //       password:'Isingizwe22@',
+  //       names:'Clarisse',
+  //       role:'admin'
+  //     }]
+  //   }
+  //   else{
+  //     users=JSON.parse(localStorage.users)
+  //   }
+  //   console.log("new user:------- ", newUser)
+  //   users.push(newUser)
+  //   localStorage.users=JSON.stringify(users)
+  //   alert("account created")
+   })
   </script>
   </body>
   

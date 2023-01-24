@@ -1,6 +1,7 @@
 import {checkValidation, setAttributes, validate, patters} from "./validation.js";
 document.addEventListener('DOMContentLoaded', ()=> {
     const form = document.getElementById("contact-form");
+    let activeUser = localStorage.getItem('activeUser')
 
     let fields = [
         {
@@ -63,8 +64,26 @@ document.addEventListener('DOMContentLoaded', ()=> {
         let formData = new FormData(event.target)
         let isFormValid = checkValidation(fields)
         if(!isFormValid){
-            event.preventDefault();
+        event.preventDefault();
         }else {
+            event.preventDefault();
+            const email= document.getElementById("email_field").value; 
+            const names = document.getElementById("names_field").value;
+            const message= document.getElementById("comment_field").value;
+
+              
+              axios.post("https://mybrand-backend.onrender.com/api/message", {
+      names: names,
+      email: email,
+      message:message
+    })
+    .then((response) => {
+      console.log(response);
+      form.reset();
+      
+            });
+
+
 
         }
     });
@@ -75,6 +94,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
 
+
+    // if(activeUser){
+    //     let login_link = document.getElementById('login_link')
+    //     login_link.innerText = 'logout'
+    // }
 
 
 })

@@ -45,7 +45,7 @@
             <label for="">Password</label>
             <input id="password_field" type="password" placeholder="Password">
             <span id="password_error"  class="error"></span>
-            <button type="submit" class="submit-button">Login</button>
+            <button type="submit" id="btn" class="submit-button">Login</button>
         </form>
         <p class="">Don't have an account?<a href="signup.html">signup</a></p>
     </div>
@@ -101,53 +101,109 @@
       </div>
 
     </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="javascript/myjs.js"></script>
     <script src="javascript/form/login_form.js" type="module" ></script>
     <script>
-      document.querySelector('form').addEventListener('submit', (e) => {
+
+// const emailInput = document.getElementById("email_field");
+// const passwordInput = document.getElementById("password_field");
+// const btn = document.getElementById("btn");
+
+// btn.addEventListener("click", () => {
+//   e.preventDefault();
+//   const email = emailInput.value;
+//   const password = passwordInput.value;
+
+//   axios.post("http://localhost:5000/api/login", {
+//       email: email,
+//       password: password
+//     })
+//     .then((response) => {
+//       console.log(response);
+//     });
+// });
+
+
+
+      document.querySelector('form').addEventListener('submit',async (e) => {
               e.preventDefault();
-              var email= document.getElementById("email_field").value; 
-              var password = document.getElementById("password_field").value;
+              const email= document.getElementById("email_field").value; 
+              const password = document.getElementById("password_field").value;
 
-              var userFromLocalStorage = JSON.parse(localStorage.getItem("users"));
+              
+              axios.post("https://mybrand-backend.onrender.com/api/login", {
+      email: email,
+      password: password
+    })
+    .then((response) => {
+      console.log(response);
+      console.log("Token to save: ", response.data.accesstoken);
+      console.log("user to save: ", response.data.user);
+      localStorage.setItem("token", response.data.accesstoken);
+      localStorage.setItem("User", JSON.stringify(response.data.user));
+      // Get the user's role from local storage
+     var user = JSON.parse(localStorage.getItem("User"));
 
-              console.log(userFromLocalStorage)
-              // if(!userFromLocalStorage){
-              //     console.log('user doesnt exist');
+
+        if (user.role === "user") {
+          window.location = "blog-landing.html";
+        } else if (user.role === "admin") {
+          window.location = "dashboard .html";
+        }
+            });
+});
+
+          //     const config = {
+          //   method: "post",
+          //   url: "http://localhost:5000/api/login",
+          //   headers: data.getHeaders
+          //     ? data.getHeaders()
+          //     : { "Content-Type": "application/json" },
+          //   data: data,
+          // };
+          // axios(config)
+          //   .then((response) => {
+          //     console.log(JSON.stringify(response.data));
+            
+          //   })
+          //   .catch((error) => {
+          //     console.log(error);
+            
+          //   });
+
+              // var userFromLocalStorage = JSON.parse(localStorage.getItem("users"));
+
+              // console.log(userFromLocalStorage)
+              
+
+              // newuser={
+              //   email,
+              //   password
               // }
-
-
-              // if (userFromLocalStorage.password !== password){
-              //     alert('wrong password');
-              //     preventDefault()
-              // }
-
-              newuser={
-                email,
-                password
-              }
           
-              let found = false;
-              for(let i=0; i<userFromLocalStorage.length; i++){
-                let user = userFromLocalStorage[i];
-                console.log("-----------",user)
-                console.log(user.role)
-                if(user.email === newuser.email && user.password === newuser.password && user.role === "admin" ){
-                found = true
-                   window.location = "dashboard .html"
-                }
-                else if(user.email === newuser.email && user.password === newuser.password && user.role === "user" ){
-                  user.isLogin = true
-                  localStorage.setItem('users' , JSON.stringify(userFromLocalStorage))
-                  found = true
-                   window.location = "blog-landing.html"
-                }
+              // let found = false;
+              // for(let i=0; i<userFromLocalStorage.length; i++){
+              //   let user = userFromLocalStorage[i];
+              //   console.log("-----------",user)
+              //   console.log(user.role)
+              //   if(user.email === newuser.email && user.password === newuser.password && user.role === "admin" ){
+              //   found = true
+              //      window.location = "dashboard .html"
+              //   }
+              //   else if(user.email === newuser.email && user.password === newuser.password && user.role === "user" ){
+              //     user.isLogin = true
+              //     localStorage.setItem('activeUser', JSON.stringify(user))
+              //     localStorage.setItem('users' , JSON.stringify(userFromLocalStorage))
+              //     found = true
+              //      window.location = "blog-landing.html"
+              //   }
                  
-              }
-              if(!found)
-                alert("Incorrect credentials")   
+              // }
+              // if(!found)
+              //   alert("Incorrect credentials")   
                       
-            })
+            //})
     </script>
     
   </body>

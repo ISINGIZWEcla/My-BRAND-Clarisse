@@ -1,12 +1,3 @@
-
-const BlogTitle=localStorage.getItem("BlogTitle")
-const blogs=JSON.parse(localStorage.blogs)
-const blogInfo=blogs.find((event)=>{
-   return event.Title === BlogTitle
-})
-
-
-
 const comment_container = document.getElementById('comment_container')
 const commment_list = document.getElementById('commment_list')
 
@@ -16,53 +7,125 @@ const blog_heading = document.getElementById('singleBlog_title')
 const publishedDate = document.getElementById('published-date')
 const singleContent = document.getElementById('singleBlog_content')
 
-blog_image.src = blogInfo.Cover
-console.log(blog_image)
+const nbrLikes=document.getElementById('liking')
 
-blog_heading.innerHTML=blogInfo.Title
-publishedDate.innerHTML=blogInfo.datecreated
-singleContent.innerHTML=blogInfo.Content
+const Names=document.getElementById('userName')
+const message=document.getElementById('commentTxt')
 
-if(blogInfo.comments){
-   blogInfo.comments.forEach(each => displayComment(each))
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+let id = urlParams.get("id")
+
+console.log("id",id)
+
+getUser(id)
+
+function getUser(id){
+   const token =localStorage.getItem('token')
+   //console.log(id)
+   axios.get(`https://mybrand-backend.onrender.com/api/get-blog/${id}`,{
+     headers: {
+     'Authorization': 'Bearer '+ token
+   }
+ })
+   .then(response => {
+   console.log(response)
+   single_blog=response.data.data
+   blogComments=response.data.comments
+   blogLikes=response.data.likes
+   
+   console.log(blogComments)
+
+   blogComments.forEach(eachComment => {
+      displayComment(eachComment)
+   });
+   blog_heading.innerHTML=single_blog.title
+   publishedDate.innerHTML=single_blog.created_on
+   singleContent.innerHTML=single_blog.content
+   blog_image.src = single_blog.image
+
+   
+   nbrLikes.innerHTML=blogLikes.count 
+  console.log(nbrLikes)
+
+   })
+   .catch(error => console.error(error));
+   
+
+
 }
+
+
+
+
+
+
+
+
+// const BlogTitle=localStorage.getItem("BlogTitle")
+// const blogs=JSON.parse(localStorage.blogs)
+// const blogInfo=blogs.find((event)=>{
+//    return event.Title === BlogTitle
+// })
+
+
+
+
+
+
+
+// if(blogInfo.comments){
+//    blogInfo.comments.forEach(each => displayComment(each))
+// }
 const myForm=document.getElementById('comment-form')
 const post_comment=document.getElementById('add_comment')
 post_comment.addEventListener('click',(event)=>{
 event.preventDefault()
 savecomment()
-myForm.reset();
+//myForm.reset();
 })
 
 function savecomment(){
 
-   const cname=document.getElementById('names_field')
-   const cemail=document.getElementById('email_field')
-   const comment_txt=document.getElementById('comment_field')
+   const cname=document.getElementById('names_field').value
+   const cemail=document.getElementById('email_field').value
+   const comment_txt=document.getElementById('comment_field').value
    const myForm=document.getElementById('comment-form')
 
+   const blogId=id
 
-var single_comment={}
-single_comment.Names=cname.value
-single_comment.Emai=cemail.value
-single_comment.CommentTxt=comment_txt.value
+   
 
-if(blogInfo.comments){
-   blogInfo.comments = [...blogInfo.comments, single_comment]
-}else {
-   blogInfo.comments = [single_comment]
-}
-localStorage.setItem('blogs', JSON.stringify(blogs))
-displayComment(single_comment)
+const token =localStorage.getItem('token')
+console.log(token)
+if(!localStorage.getItem("token")){
+   window.location.href = "login.html";
+ }
+ const formData = new FormData() 
+ formData.append('names' ,cname)
+ formData.append('email' ,cemail)
+ formData.append('comment' ,comment_txt)
+ formData.append('blogId' ,blogId)
+   axios.post(`https://mybrand-backend.onrender.com/api/comment`,{
+      formData,
+     headers: {
+     'Authorization': 'Bearer '+ token
+   }
+ })
+   .then(response => {
+   console.log(response)
+   })
+   
+
 
 }
 
 function displayComment (each ){
    let newComment = comment_container.cloneNode(true)
-   newComment.id = each.Names+"unique"
+   newComment.id = each.names+"unique"
 
-   newComment.querySelector('#userName').innerText = each.Names || null
-   newComment.querySelector('#commentTxt').innerText = each.CommentTxt || null
+   newComment.querySelector('#userName').innerText = each.names || null
+   newComment.querySelector('#commentTxt').innerText = each.comment || null
 
    commment_list.appendChild(newComment)
    
@@ -70,26 +133,26 @@ function displayComment (each ){
 }
 
 
-const get_likes=document.getElementById('likes-nbr')
-get_likes.addEventListener('click',(event)=>{
+// const get_likes=document.getElementById('likes-nbr')
+// get_likes.addEventListener('click',(event)=>{
 
-   liked()
+//    liked()
 
-})
+// })
 
 
-function liked(){
-   if(blogInfo.likes){
-      blogInfo.likes = blogInfo.likes +1
-   }else {
-      blogInfo.likes = 1
-   }
-localStorage.setItem('blogs', JSON.stringify(blogs))
+// function liked(){
+//    if(blogInfo.likes){
+//       blogInfo.likes = blogInfo.likes +1
+//    }else {
+//       blogInfo.likes = 1
+//    }
+// localStorage.setItem('blogs', JSON.stringify(blogs))
 
-setNumberOfLikes(blogInfo.likes)
-}
+// setNumberOfLikes(blogInfo.likes)
+// }
 
-function setNumberOfLikes(n) {
-   const mylikes=document.getElementById('liking')
-   mylikes.innerText=n
-}
+// function setNumberOfLikes(n) {
+//    const mylikes=document.getElementById('liking')
+//    mylikes.innerText=n
+// }

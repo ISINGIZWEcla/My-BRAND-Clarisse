@@ -1,60 +1,57 @@
 
 
-const post_blog=document.getElementById('post_blog')
-post_blog.addEventListener('click',(event)=>{
+const post_blog=document.getElementById('new_blog_form')
+post_blog.addEventListener('submit',(event)=>{
 event.preventDefault()
 saveBlog()
 
 })
- function saveBlog(){
+async function saveBlog(){
 let title=document.getElementById('title')
 let description=document.getElementById('description')
 let content=document.getElementById('editor')
 let cover=document.getElementById('myFile')
 
-let blogs ;
-if(!localStorage.getItem('blogs')){
-  blogs=[]
-}
-else{
-  blogs=JSON.parse(localStorage.getItem('blogs'))
-}
+const token =localStorage.getItem('token')
+  console.log(token)
+  const imagelink=cover.files[0]
+  console.log("Hello",imagelink)
+  //const reader=new FileReader()
+
+  
+      //finalImage=reader.result
+    
+    Title=title.value
+    Description=description.value
+    Content=content.value
+    Cover=imagelink;
+    
+  const formData = new FormData() 
+    formData.append('title' ,Title)
+    formData.append('description' ,Description)
+    formData.append('content' ,Content)
+    formData.append('image' ,Cover)
+axios.post("https://mybrand-backend.onrender.com/api/add-blog", formData,
+    {
+      headers: {
+      'Authorization': 'Bearer '+ token
+    }
+    }
+)
+.then((response) => {
+  console.log("Responze:",response);
+  location="../dashboard .html"
  
-var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var yyyy = today.getFullYear();
+        })
+  .catch((err)=>{
+    console.log(err)
 
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
+        })
 
-    const month = monthNames[today.getMonth()]
+           
 
 
-    today = month + ' ' + dd + ', ' + yyyy;
 
-
-const imagelink=cover.files
-console.log(imagelink)
-const reader=new FileReader()
-reader.readAsDataURL(imagelink[0])
-
-
-reader.addEventListener("load",()=>{
-  finalImage=reader.result
-
-
-var single_blog={}
-single_blog.Title=title.value
-single_blog.Description=description.value
-single_blog.Content=content.value
-single_blog.datecreated=today
-single_blog.Cover=finalImage;
-
-blogs.push(single_blog)
-localStorage.setItem('blogs',JSON.stringify(blogs))
-})
-location="../dashboard .html"
 
 }
 

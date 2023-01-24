@@ -1,48 +1,8 @@
 const blog_cont=document.getElementById('blog_view')
 
-const blog_list=JSON.parse(localStorage.blogs)
-console.log(blog_list)
 
+getBlogs()
 
-
-// this function will construct our dom with the blogs content 
-function fetchBlogs() {
-
-for(let i=0;i<blog_list?.length;i++){
-  
-  blog_cont.innerHTML+=`
-  <div class="content">
-          <div class="article">
-          ${blog_list[i].Title || ''}
-
-          </div>
-          <div class="pub-date">
-          ${blog_list[i]?.datecreated || ''}
-          </div>
-          <div class="views">
-            <p>0 <i class="fa fa-eye" aria-hidden="true"></i></p>
-            
-            
-          </div>
-          <div class="likes">
-            <p>${blog_list[i]?.likes|| 0} <i class="fa fa-thumbs-up" aria-hidden="true"></i></p>
-            
-          </div>
-          <div class="comments">
-            <p>${blog_list[i]?.comments?.length || 0} <i class="fa fa-comment" aria-hidden="true"></i></p>
-          </div>
-          <div class="deleteb">
-            <button id="delete" onclick = "deleteBlog('${blog_list[i]?.Title || ''}')">Delete</button>
-          </div>
-          <div class="editb">
-            <button id="editb" onclick = "editSingleBlog('${blog_list[i]?.Title || ''}')">Edit</button>
-          </div>
-        </div>
-  
-  `
-  }
-}
-fetchBlogs()
 
 
 function editSingleBlog(otherTitle){
@@ -63,13 +23,48 @@ if (blogs.length > 0) {
 }
 
 
-// blogs = blogs?.filter(each => each.title === title)
-// localStorage.setItem('blogs', blogs)
 
-// window.localStorage.reload()
 }
 
+async  function  getBlogs(){
+  try {
+    const  response  = await axios.get('https://mybrand-backend.onrender.com/api/get-blogs')
+    const data = response.data.data.blogs
+console.log("response:",data)
+data.forEach(eachBlog=>{
+  blog_cont.innerHTML+=`
+  <div class="content" style="display: flex;">
+          <div class="article" style="flex: 1.5;">
+          ${eachBlog.title || ''}
 
+          </div>
+          <div class="pub-date" style="flex: 1;">
+          ${eachBlog?.created_on || ''}
+          </div>
+          
+          <div class="likes" style="flex: 1;">
+            <p>${eachBlog?.likes|| 0} <i class="fa fa-thumbs-up" aria-hidden="true"></i></p>
+            
+          </div>
+          <div class="comments" style="flex: 1;">
+            <p>${eachBlog?.comments?.length || 0} <i class="fa fa-comment" aria-hidden="true"></i></p>
+          </div>
+          <div class="deleteb" style="flex: 1;">
+            <button id="delete" onclick = "deleteBlog('${eachBlog?.Title || ''}')">Delete</button>
+          </div>
+          <div class="editb" style="flex: 1;">
+            <button id="editb" onclick = "editSingleBlog('${eachBlog?.Title || ''}')">Edit</button>
+          </div>
+        </div>
+  
+  `
+  
+})  
+}catch(err) {
+    console.error(err)
+
+}
+}
 
 
 

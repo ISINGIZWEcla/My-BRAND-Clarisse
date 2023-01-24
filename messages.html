@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet"
      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </Head>
   <body>
@@ -27,50 +26,32 @@
 
     <div class="dash-cont">
       
-      <div class="menu-bar">
-        <button type = "button" class = "menu-btn" id = "menu-btn">
-          <span>
-            <i class = "fas fa-bars"></i>
-          </span>
-        </button>
+      <div class="menu-bar" >
+        <button type = "button" class = "menu-btn" id = "menu-btn" >
+          <i class = "fas fa-bars"></i>
+      </button>
         <ul id="menub">
         <li class="manage-blog"><a href="dashboard .html">Manage Blogs </a></li>
-        <li><a href="#">New Blog</a></li>
+        <li><a href="dashboard3.html">New Blog</a></li>
         <li><a href="dashboard2.html">Manage Users</a></li>
         <li><a href="messages.html">Messages</a></li>
         <li><a href="login.html">Logout</a></li>
       </ul>
       </div>
-      
-        <div class="edit-form">
-        <form id="new_blog_form" action="" class="new-blogedit">
-          <h2 class="managetxt"> Edit Blog</h2>
-          <div class="blog-title">
-            <input type="text" name="title" placeholder="Title"  id="title">
-          </div>  
-          <div class="blog-desc">
-            <input type="text" name="description" placeholder="Description" id="description">
-          </div>  
-          <div class="rich-edit">
-            <textarea name="editor" id="editor" cols="30" rows="10" placeholder="Content"></textarea>
-        </div>
-        <div class="file-upload">
-          <p>Image/video upload</p><br/>
-          <input type="file" id="myFile" name="filename"  class="bg-red">
+      <div id="blogs_container" class="manage-cont">
+        <h2 class="managetxt">Messages</h2>
+        <div id="blog_view" class="content-holder">
           
+        
+        
         </div>
-        <button type="submit" id="post_blog" class="post-btn">Post Blog</button>
-      </form>
-        </div>
-    
-   </div>
+    </div>
   </div>
-    
-   
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-   <script src="./javascript/blog_creation.js"></script>
+   </div> 
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+   <script src="javascript/message.js"></script>
    <script src="javascript/myjs.js"></script>
   </body>
-   
+  
 </html>
   
