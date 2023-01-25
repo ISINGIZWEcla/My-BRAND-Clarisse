@@ -11,7 +11,7 @@ getUsers()
 function deleteUser(id){
     const token =localStorage.getItem('token')
     console.log(id)
-    axios.delete(`http://localhost:5000/api/del-user/${id}`,{
+    axios.delete(`https://mybrand-backend.onrender.com/api/del-user/${id}`,{
       headers: {
       'Authorization': 'Bearer '+ token
     }

@@ -13,6 +13,9 @@ let content=document.getElementById('editor')
 let cover=document.getElementById('myFile')
 
 const token =localStorage.getItem('token')
+if(!localStorage.getItem("token")){
+  window.location.href = "login.html";
+}
   console.log(token)
   const imagelink=cover.files[0]
   console.log("Hello",imagelink)

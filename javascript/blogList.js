@@ -5,26 +5,36 @@ getBlogs()
 
 
 
-function editSingleBlog(otherTitle){
-  localStorage.setItem("otherBlogTitle",otherTitle)
+function editSingleBlog(id){
+  localStorage.setItem("otherBlogTitle",id)
   history.go(0)
-  location="../editblog.html"
+  location=`../editblog.html?id=${id}`
 
 }
 
 
-function deleteBlog(title){
-let blogs = JSON.parse(localStorage.getItem('blogs'))
+function deleteBlog(id){
+  const token =localStorage.getItem('token')
+  console.log(id)
+  axios.delete(`https://mybrand-backend.onrender.com/api/del-blog/${id}`,{
+    headers: {
+    'Authorization': 'Bearer '+ token
+  }
+})
+  .then(response => {
+  console.log(`DELETE: blog is removed`, id);
+  console.log(response)
+  location="../dashboard .html"
+  })
+  .catch(error => console.error(error));
+  
 
-if (blogs.length > 0) {
-  const filtered = blogs.filter(blog => blog.Title !== title)
-  localStorage.setItem('blogs', JSON.stringify(filtered))
 
 }
 
 
 
-}
+
 
 async  function  getBlogs(){
   try {
@@ -50,10 +60,10 @@ data.forEach(eachBlog=>{
             <p>${eachBlog?.comments?.length || 0} <i class="fa fa-comment" aria-hidden="true"></i></p>
           </div>
           <div class="deleteb" style="flex: 1;">
-            <button id="delete" onclick = "deleteBlog('${eachBlog?.Title || ''}')">Delete</button>
+            <button id="delete" onclick = "deleteBlog('${eachBlog?._id || ''}')">Delete</button>
           </div>
           <div class="editb" style="flex: 1;">
-            <button id="editb" onclick = "editSingleBlog('${eachBlog?.Title || ''}')">Edit</button>
+            <button id="editb" onclick = "editSingleBlog('${eachBlog?._id || ''}')">Edit</button>
           </div>
         </div>
   

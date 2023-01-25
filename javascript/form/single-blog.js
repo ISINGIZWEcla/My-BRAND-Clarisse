@@ -12,17 +12,23 @@ const nbrLikes=document.getElementById('liking')
 const Names=document.getElementById('userName')
 const message=document.getElementById('commentTxt')
 
+const user=JSON.parse(localStorage.getItem('User'))
+const userId=user.id
+
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 let id = urlParams.get("id")
 
-console.log("id",id)
+//console.log("id",userId)
 
-getUser(id)
+getBlog(id)
 
-function getUser(id){
+
+function getBlog(id){
    const token =localStorage.getItem('token')
-   //console.log(id)
+   if(!localStorage.getItem("token")){
+      window.location.href = "login.html";
+    }
    axios.get(`https://mybrand-backend.onrender.com/api/get-blog/${id}`,{
      headers: {
      'Authorization': 'Bearer '+ token
@@ -34,7 +40,7 @@ function getUser(id){
    blogComments=response.data.comments
    blogLikes=response.data.likes
    
-   console.log(blogComments)
+   //console.log(blogComments)
 
    blogComments.forEach(eachComment => {
       displayComment(eachComment)
@@ -46,7 +52,7 @@ function getUser(id){
 
    
    nbrLikes.innerHTML=blogLikes.count 
-  console.log(nbrLikes)
+  //console.log(nbrLikes)
 
    })
    .catch(error => console.error(error));
@@ -106,12 +112,12 @@ if(!localStorage.getItem("token")){
  formData.append('email' ,cemail)
  formData.append('comment' ,comment_txt)
  formData.append('blogId' ,blogId)
-   axios.post(`https://mybrand-backend.onrender.com/api/comment`,{
-      formData,
+   axios.post(`https://mybrand-backend.onrender.com/api/comment`,
+      formData,{
      headers: {
      'Authorization': 'Bearer '+ token
    }
- })
+})
    .then(response => {
    console.log(response)
    })
@@ -133,12 +139,28 @@ function displayComment (each ){
 }
 
 
-// const get_likes=document.getElementById('likes-nbr')
-// get_likes.addEventListener('click',(event)=>{
+const get_likes=document.getElementById('likes-nbr')
+get_likes.addEventListener('click',(event)=>{
 
-//    liked()
+   const token =localStorage.getItem('token')
+console.log(token)
+if(!localStorage.getItem("token")){
+   window.location.href = "login.html";
+ }
+ const formData = new FormData() 
+ formData.append('userId' ,userId)
+ formData.append('blogId' ,id)
+   axios.patch(`https://mybrand-backend.onrender.com/api/like`,
+      formData,{
+     headers: {
+     'Authorization': 'Bearer '+ token
+   }
+})
+   .then(response => {
+   console.log(response)
+   })
 
-// })
+})
 
 
 // function liked(){
