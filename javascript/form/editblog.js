@@ -52,6 +52,11 @@ editBlog.addEventListener("click", (event)=>{
   event.preventDefault()
 
   editBlogContents(id)
+  Swal.fire(
+    'are you sure about your updates blog?',
+    'click ok then',
+    'question'
+  )
 })
 
 function editBlogContents(id){

@@ -159,6 +159,11 @@ if(!localStorage.getItem("token")){
    .then(response => {
    console.log(response)
    })
+   Swal.fire(
+      'you liked this blog',
+      'liked',
+      'success'
+    )
 
 })
 

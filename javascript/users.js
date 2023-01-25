@@ -10,6 +10,10 @@ getUsers()
 
 function deleteUser(id){
     const token =localStorage.getItem('token')
+    if(!localStorage.getItem("token")){
+      window.location.href = "login.html";
+    }
+     
     console.log(id)
     axios.delete(`https://mybrand-backend.onrender.com/api/del-user/${id}`,{
       headers: {

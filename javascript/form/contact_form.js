@@ -79,6 +79,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     })
     .then((response) => {
       console.log(response);
+      Swal.fire(
+        'Your message is sent',
+        
+        'success'
+      )
       form.reset();
       
             });
