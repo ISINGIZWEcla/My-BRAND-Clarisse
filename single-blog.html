@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <Head>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.css" integrity="sha512-JzSVRb7c802/njMbV97pjo1wuJAE/6v9CvthGTDxiaZij/TFpPQmQPTcdXyUVucsvLtJBT6YwRb5LhVxX3pQHQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+  </Head>
+  <body>
+    
+    <div class="box-container">
+      <nav class="nav-bar">    
+        <img src="image/logo.png" alt="profile">
+        <button  class = "hamburger" id = "hamburger" >
+          <i class = "fas fa-bars"></i>
+      </button>
+      <ul  id="nav-ul" >
+          <li> <a href="index.html" > Home</a> </li>
+          <li> <a href="index.html#about-page" > About</a> </li>
+          <li> <a href="index.html#skills-page" > Skills</a> </li>
+          <li> <a href="index.html#projects-page" > Projects</a> </li>
+          <li> <a href="blog-landing.html" > Blogs</a> </li>
+          <li> <a href="index.html#contact-page" > Contact </a> </li>
+          <li> <a href="login.html" > login</a> </li>
+        </ul>    
+      </nav>
+      <section class="blog-container  b-cont">
+        <div id="singleBlog_cont">
+         <div class="image-dates">
+          <img  id="singleBlog_img" src="" alt="">
+          <div class="publishing-details">
+            <div class="published-date" id="published-date">
+             
+            </div>
+            <div class="author">
+              
+            </div>
+            
+          
+        </div>
+         </div>
+         <div class="blog-paragraphs">
+          <h1 id="singleBlog_title"></h1>
+          <p id="singleBlog_content">
+         
+            </p>
+
+         </div>
+        </div>
+         <div class="comment-likes">
+          <div class="comment-number">
+            Comments  
+          </div>
+          <div class="likesNumber">
+           <span id="liking"></span>
+            <button  id="likes-nbr"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+            
+          </div>
+
+         </div>
+        <div id="commment_list" class="comment-list">
+        
+         <div id="comment_container">
+          <div class="commenter-info">
+          <i class="fas fa-user-circle"></i>
+            <label id="userName" for="names"> </label>
+         </div>
+         <div class="comment">
+          <p id="commentTxt">
+            </p>
+
+         </div>
+         
+        
+        </div>
+        </div>
+        <div class="new-comment">
+          <form class="comment-form" novalidate id="comment-form">
+            <h1>new comment</h1>
+            <input type="text" id="names_field" placeholder="Names">
+            <span id="names_error" class="error"></span>
+            <input type="email" id="email_field" placeholder="Email">
+            <span id="email_error" class="error"></span>
+            <input type="text" id="comment_field" placeholder="comment">
+            <span id="comment_error" class="error"></span>
+            <button id="add_comment">Add Comment</button>
+          </form>
+
+        </div>
+      </section>
+      <section class="footer">
+        <hr>
+        <div class="grouped-footer">
+          <div class="reach-us">
+            <h2>Reach Us</h2><br/>
+            <div class="phones">
+              <i class="fa fa-phone" aria-hidden="true"></i> +250782509177
+            </div>
+            <div class="my-mail">
+              <i class="fa fa-envelope" aria-hidden="true"></i> 
+              <a href="klaraisingizwe@gmail.com">klaraisingizwe@gmail.com</a>
+
+            </div>
+            <div class="location">
+              <i class="fa fa-map-marker" aria-hidden="true"></i> Kigali,Nyarugenge
+            </div>
+          </div>
+          <div class="quick-links">
+            <h2>Quick Links</h2>
+            <div class="row">
+            <p><a href="index.html#about-page">About</a></p>
+            <p><a href="index.html#skills-page">Skills</a></p>
+            <p><a href="blog-landing.html">Blogs</a></p>
+          </div>
+          <div class="row">
+            <p><a href="index.html#projects-page">My Works</a></p>
+            <p><a href="index.html#contact-page">Contacts</a></p>
+            <p><a href="login.html">Login</a></p>
+            </div>
+          </div>
+          <div class="subscription">
+            <h2>Join our Newsletter</h2><br/>
+            <input type="email" name="" id="" placeholder="Your Email Address">
+            <button class="sub-butn">Subscribe</button>
+          </div>
+        </div>
+        <div class="social">
+          <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+            <i class = "fab fa-facebook-f"></i>
+          </a>
+          <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+            <i class = "fab fa-twitter"></i>
+          </a>
+          <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+            <i class = "fab fa-youtube"></i>
+          </a>
+          <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+            <i class = "fab fa-github"></i>
+        </div>
+
+      </section>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javascript/myjs.js"></script>
+    <script src="javascript/form/newcomment_form.js" type="module" ></script>
+    <script src="javascript/form/single-blog.js" ></script>
+    
+  </body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <Head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA Compatible" content="IE=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+  </Head>
+
+  <body>
+    
+    <!-- navbar section -->
+    <nav>
+      <img src="image/logo.png" alt="">
+      <button  class = "hamburger" id = "hamburger" >
+        <i class = "fas fa-bars"></i>
+    </button>
+    <ul  id="nav-ul" >
+        <li> <a href="index.html" > Home</a> </li>
+          <li> <a href="index.html#about-page" > About</a> </li>
+          <li> <a href="index.html#skills-page" > Skills</a> </li>
+          <li> <a href="index.html#projects-page" > Projects</a> </li>
+          <li> <a href="blog-landing.html" > Blogs</a> </li>
+          <li> <a href="index.html#contact-page" > Contact </a> </li>
+          <li> <a href="login.html" > login</a> </li>
+      </ul>
+
+    </nav>
+
+
+    <div class="login-form">
+        <h1>Sign up</h1>
+        <form  id="sign_form" novalidate action="login.html">
+            <label for="">Names</label>
+            <input type="text" id="name_field" placeholder="Name">
+            <span id="name_error"  class="error"></span>
+            <label for="">Email</label>
+            <input type="email" id="email_field" placeholder="Email">
+            <span id="email_error" class="error"></span>
+            <label for="">Password</label>
+            <input type="password" id="password_field" placeholder="Password">
+            <span id="password_error"  class="error"></span>
+            <button type="submit"  class="submit-button">Sign up</button>
+        </form>
+        <p class="">Have an account already?<a href="login.html">Login</a></p>
+    </div>
+    <section class="footer">
+      <hr>
+      <div class="grouped-footer">
+        <div class="reach-us">
+          <h2>Reach Us</h2><br/>
+          <div class="phones">
+            <i class="fa fa-phone" aria-hidden="true"></i> +250782509177
+          </div>
+          <div class="my-mail">
+            <i class="fa fa-envelope" aria-hidden="true"></i> 
+            <a href="klaraisingizwe@gmail.com">klaraisingizwe@gmail.com</a>
+
+          </div>
+          <div class="location">
+            <i class="fa fa-map-marker" aria-hidden="true"></i> Kigali,Nyarugenge
+          </div>
+        </div>
+        <div class="quick-links">
+          <h2>Quick Links</h2>
+          <div class="row">
+            <p><a href="index.html#about-page">About</a></p>
+            <p><a href="index.html#skills-page">Skills</a></p>
+            <p><a href="blog-landing.html">Blogs</a></p>
+          </div>
+          <div class="row">
+            <p><a href="index.html#projects-page">My Works</a></p>
+            <p><a href="index.html#contact-page">Contacts</a></p>
+            <p><a href="login.html">Login</a></p>
+          </div>
+        </div>
+        <div class="subscription">
+          <h2>Join our Newsletter</h2><br/>
+          <input type="email" name="" id="" placeholder="Your Email Address">
+          <button class="sub-butn">Subscribe</button>
+        </div>
+      </div>
+      <div class="social">
+        <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+          <i class = "fab fa-facebook-f"></i>
+        </a>
+        <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+          <i class = "fab fa-twitter"></i>
+        </a>
+        <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+          <i class = "fab fa-youtube"></i>
+        </a>
+        <a href = "https://fontawesome.com/v4/icon/download" target="_blank">
+          <i class = "fab fa-github"></i>
+      </div>
+
+    </section>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javascript/myjs.js"></script>
+  <script src="javascript/form/signup_form.js" type="module" ></script>
+  <script>
+    document.querySelector('form').addEventListener('submit',async (e) => {
+      event.preventDefault()
+    const email = document.querySelector('#email_field').value
+    const password = document.querySelector('#password_field').value
+    const names=document.querySelector('#name_field').value
+
+    // new user object to be saved to local storage
+    
+
+   // set user to localstorage  
+   const newUser = {
+      email, 
+      password,
+      names,
+    }
+    let res = await axios.post('https://mybrand-backend.onrender.com/api/add-users', newUser);
+
+    let data = res.data;
+    console.log(data);
+
+  //  // set user to localstorage 
+  //  var users ;
+  //   if(!localStorage.users){
+  //     users=[{
+  //       email:'klaraisingizwe@gmail.com', 
+  //       password:'Isingizwe22@',
+  //       names:'Clarisse',
+  //       role:'admin'
+  //     }]
+  //   }
+  //   else{
+  //     users=JSON.parse(localStorage.users)
+  //   }
+  //   console.log("new user:------- ", newUser)
+  //   users.push(newUser)
+  //   localStorage.users=JSON.stringify(users)
+  //   alert("account created")
+   })
+  </script>
+  </body>
+  
+  
+</html>
